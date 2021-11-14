@@ -1,7 +1,11 @@
 <p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/fatelei/github-notify-actions/actions"><img alt="typescript-action status" src="https://github.com/fatelei/github-notify-actions/workflows/build-test/badge.svg"></a>
 </p>
 
 # Github notify actions
 
-Integrate with: lark, wecom webhooks.
+Integrate with: lark, wecom, slack webhooks.
+
+# Usage
+
+TODO

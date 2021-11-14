@@ -2,15 +2,22 @@ name: 'github-notify-action'
 description: 'Integrate im webhooks'
 author: 'fatelei'
 inputs:
+  integration:
+    required: true
+    description: 'support lark / wecom'
   webhook:
     required: true
     description: 'webhook url'
-  message_type:
+  messageType:
     required: true
     description: 'message type, current only support text'
+  title:
+    required: false
+    description: 'title'
+    default: ''
   content:
     required: true
-    description: 'what text is sended'
+    description: 'content'
 runs:
   using: 'node12'
   main: 'dist/index.js'

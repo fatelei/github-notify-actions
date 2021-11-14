@@ -19,4 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run:
+          git pull origin main
       - uses: ./
+        with:
+          integration: slack
+          webhook: ${{ secrets.TEST_WEBHOOK_URL }}
+          messageType: 'text'
+          content: 'hello world'

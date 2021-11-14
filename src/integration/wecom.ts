@@ -1,21 +1,24 @@
-import axios from 'axios';
+import axios from 'axios'
 
 interface messageBody {
-  msgType: string;
+  msgType: string
   text?: {
-    content: string;
+    content: string
   }
 }
 
 class Wecom {
-  static supportMessageType: string[] = ['text'];
-  private webhook: string;
+  static supportMessageType: string[] = ['text']
+  private webhook: string
 
   constructor(webhook: string) {
-    this.webhook = webhook;
+    this.webhook = webhook
   }
 
-  private generateMessage(messageType: string, message: string): messageBody | null {
+  private generateMessage(
+    messageType: string,
+    message: string
+  ): messageBody | null {
     switch (messageType) {
       case 'text':
         return {
@@ -25,19 +28,21 @@ class Wecom {
           }
         }
       default:
-        return null;
+        return null
     }
   }
 
-  public sendMessage(messageType: string, message: string): Promise<any> {
-    const body :messageBody | null = this.generateMessage(messageType, message);
+  async sendMessage(
+    messageType: string,
+    title: string,
+    content: string
+  ): Promise<void> {
+    const body: messageBody | null = this.generateMessage(messageType, content)
     if (!body) {
-      return Promise.reject(new Error('Unsupported message type'));
+      return Promise.reject(new Error('Unsupported message type'))
     }
-    return axios.post(this.webhook, {
-      data: body
-    });
+    return axios.post(this.webhook, body)
   }
 }
 
-export default Wecom;
+export default Wecom

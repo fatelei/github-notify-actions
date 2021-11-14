@@ -5,7 +5,7 @@ interface messageBody {
   text?: string
 }
 
-class Lark {
+class Slack {
   private webhook: string
 
   constructor(webhook: string) {
@@ -14,13 +14,11 @@ class Lark {
 
   private generateMessage(
     messageType: string,
-    title: string,
     content: string
   ): messageBody | null {
     switch (messageType) {
       case 'text':
         return {
-          title,
           text: content
         }
       default:
@@ -33,11 +31,7 @@ class Lark {
     title: string,
     content: string
   ): Promise<void> {
-    const body: messageBody | null = this.generateMessage(
-      messageType,
-      title,
-      content
-    )
+    const body: messageBody | null = this.generateMessage(messageType, content)
     if (!body) {
       return Promise.reject(new Error('Unsupported message type'))
     }
@@ -46,4 +40,4 @@ class Lark {
   }
 }
 
-export default Lark
+export default Slack

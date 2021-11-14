@@ -1,6 +1,6 @@
 {
   "name": "github-notify-actions",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "description": "Integrate im webhooks",
   "main": "lib/main.js",
@@ -29,6 +29,7 @@
     "axios": "^0.24.0"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.10.5",
     "@typescript-eslint/parser": "^5.0.0",
     "@vercel/ncc": "^0.31.1",

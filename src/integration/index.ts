@@ -1,4 +1,5 @@
-import Lark from './lark';
-import Wecom from './wecom';
+import Lark from './lark'
+import Slack from './slack'
+import Wecom from './wecom'
 
-export { Lark, Wecom };
+export {Lark, Slack, Wecom}

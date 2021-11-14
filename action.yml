@@ -4,20 +4,20 @@ author: 'fatelei'
 inputs:
   integration:
     required: true
-    description: 'support lark / wecom'
+    description: 'support lark / wecom / slack'
   webhook:
     required: true
     description: 'webhook url'
   messageType:
     required: true
     description: 'message type, current only support text'
+  content:
+    required: true
+    description: 'content'
   title:
     required: false
     description: 'title'
     default: ''
-  content:
-    required: true
-    description: 'content'
 runs:
   using: 'node12'
   main: 'dist/index.js'

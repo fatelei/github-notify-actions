@@ -22,7 +22,8 @@ jobs:
       - name: cat publish file
         run:
           cat src/main.ts
-      - uses: ./
+      - name: test action
+        uses: ./
         with:
           integration: slack
           webhook: ${{ secrets.TEST_WEBHOOK_URL }}

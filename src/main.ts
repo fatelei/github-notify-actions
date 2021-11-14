@@ -1,16 +1,35 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import { Lark, Wecom } from './integration'
+
+
+const getIntegration = (): Lark | Wecom | null => {
+  const integration: string = core.getInput('integration');
+  const webhook: string = core.getInput('webhook');
+  core.debug(`get integration ${integration} with webhook ${webhook}`)
+
+  switch (integration) {
+    case "lark":
+      return new Lark(webhook);
+    case "wecom":
+      return new Wecom(webhook);
+    default:
+      return null;
+  }
+}
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    const integration: Lark | Wecom | null = getIntegration();
+    if (!integration) {
+      core.setFailed("No integration specified");
+      return;
+    }
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const messageType: string = core.getInput('messageType');
+    const content: string = core.getInput('content');
+    core.debug(`send message ${messageType} with content ${content}`)
+    await integration.sendMessage(messageType, content);
+    core.setOutput('send_webhook', new Date().toTimeString())
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

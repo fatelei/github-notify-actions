@@ -1,7 +1,10 @@
 import * as core from '@actions/core'
 import {Lark, Slack, Wecom} from './integration'
 
-const getIntegration = (integration: string, webhook: string): Lark | Slack | Wecom | null => {
+const getIntegration = (
+  integration: string,
+  webhook: string
+): Lark | Slack | Wecom | null => {
   switch (integration) {
     case 'lark':
       core.debug(`init ${integration} instance`)
@@ -22,7 +25,10 @@ async function run(): Promise<void> {
   try {
     const integration: string = core.getInput('integration')
     const webhook: string = core.getInput('webhook')
-    const cli: Lark | Slack | Wecom | null = getIntegration(integration, webhook)
+    const cli: Lark | Slack | Wecom | null = getIntegration(
+      integration,
+      webhook
+    )
     if (!cli) {
       core.setFailed('No integration specified')
       return

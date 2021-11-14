@@ -19,8 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run:
-          git pull origin main
+      - name: cat publish file
+        run:
+          cat src/main.ts
       - uses: ./
         with:
           integration: slack
